@@ -1,0 +1,80 @@
+﻿version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: campus-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: campus_helper
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./campus-helper-server/sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - campus-net
+
+  redis:
+    image: redis:7-alpine
+    container_name: campus-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - campus-net
+
+  server:
+    build:
+      context: ./campus-helper-server
+    container_name: campus-server
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_DB: campus_helper
+      MYSQL_USER: root
+      MYSQL_PASS: root123
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_DB: 0
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - campus-net
+
+  client:
+    build:
+      context: ./campus-helper-client
+    container_name: campus-client
+    ports:
+      - "80:80"
+    depends_on:
+      - server
+    networks:
+      - campus-net
+
+volumes:
+  mysql-data:
+  redis-data:
+
+networks:
+  campus-net:
+    driver: bridge

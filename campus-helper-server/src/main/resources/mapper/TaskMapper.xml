@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.campushelper.mapper.TaskMapper">
+
+    <sql id="baseCols">
+        t.id, t.title, t.description,
+        t.category_id, c.name AS categoryName,
+        t.user_id, u.nickname AS publisherNickname, u.avatar AS publisherAvatar,
+        t.price, t.contact_phone, t.address,
+        t.status, t.urgent, t.deadline, t.view_count,
+        t.create_time, t.update_time
+    </sql>
+
+    <sql id="acceptCols">
+        ta.user_id AS acceptorId,
+        ua.nickname AS acceptorNickname,
+        ta.accept_time, ta.complete_time
+    </sql>
+
+    <select id="selectTaskVOPage" resultType="com.campushelper.dto.TaskVO">
+        SELECT
+            <include refid="baseCols"/>,
+            <include refid="acceptCols"/>
+        FROM task t
+        LEFT JOIN category c ON t.category_id = c.id AND c.deleted = 0
+        LEFT JOIN `user` u ON t.user_id = u.id AND u.deleted = 0
+        LEFT JOIN task_accept ta ON ta.task_id = t.id AND ta.deleted = 0 AND ta.status IN (0, 1)
+        LEFT JOIN `user` ua ON ta.user_id = ua.id AND ua.deleted = 0
+        <where>
+            t.deleted = 0
+            <if test="req.keyword != null and req.keyword != ''">
+                AND t.title LIKE CONCAT('%', #{req.keyword}, '%')
+            </if>
+            <if test="req.categoryId != null">
+                AND t.category_id = #{req.categoryId}
+            </if>
+            <if test="req.status != null">
+                AND t.status = #{req.status}
+            </if>
+            <if test="req.userId != null">
+                AND t.user_id = #{req.userId}
+            </if>
+        </where>
+        ORDER BY t.create_time DESC
+    </select>
+
+    <select id="selectTaskVOById" resultType="com.campushelper.dto.TaskVO">
+        SELECT
+            <include refid="baseCols"/>,
+            <include refid="acceptCols"/>
+        FROM task t
+        LEFT JOIN category c ON t.category_id = c.id AND c.deleted = 0
+        LEFT JOIN `user` u ON t.user_id = u.id AND u.deleted = 0
+        LEFT JOIN task_accept ta ON ta.task_id = t.id AND ta.deleted = 0 AND ta.status IN (0, 1)
+        LEFT JOIN `user` ua ON ta.user_id = ua.id AND ua.deleted = 0
+        WHERE t.id = #{id} AND t.deleted = 0
+    </select>
+
+</mapper>
