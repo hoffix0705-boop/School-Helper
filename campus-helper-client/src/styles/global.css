@@ -1,0 +1,26 @@
+﻿/* === 校园帮 - 全局样式 === */
+* { box-sizing: border-box; }
+html, body, #app { margin: 0; padding: 0; height: 100%; font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { background-color: #f0f2f5; }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #c0c4cc; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #909399; }
+
+.el-card { border-radius: 8px; border: 1px solid #ebeef5; transition: box-shadow 0.3s; }
+.el-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+
+.el-table th.el-table__cell { background-color: #fafafa !important; color: #606266 !important; font-weight: 600 !important; }
+.el-button--primary { background: linear-gradient(135deg, #409eff, #337ecc); border: none; }
+.el-button--primary:hover { background: linear-gradient(135deg, #66b1ff, #409eff); }
+.el-pagination.is-background .el-pager li:not(.is-disabled).is-active { background: linear-gradient(135deg, #409eff, #337ecc); }
+
+/* 页面容器 */
+.page-container { padding: 0; }
+.page-card { border-radius: 8px; min-height: 400px; }
+.card-header { display: flex; justify-content: space-between; align-items: center; }
+.card-title { font-size: 16px; font-weight: 600; color: #303133; display: flex; align-items: center; gap: 6px; }
+.search-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+.pagination-wrap { margin-top: 20px; display: flex; justify-content: flex-end; }
+.action-btn { font-weight: 500; letter-spacing: 0.5px; }

@@ -17,11 +17,7 @@ public class SaTokenConfig implements WebMvcConfigurer {
         registry.addInterceptor(new SaInterceptor(handle -> StpUtil.checkLogin()))
                 .addPathPatterns("/**")
                 .excludePathPatterns(
-                        "/auth/**",
-                        "/swagger-resources/**",
-                        "/webjars/**",
-                        "/v3/**",
-                        "/doc.html"
+                        "/auth/**"
                 );
     }
 }

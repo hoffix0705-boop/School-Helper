@@ -1,0 +1,10 @@
+﻿.card { padding: 20px; background: var(--el-bg-color); border: 1px solid var(--el-border-color-light); border-radius: 8px; box-shadow: 0 0 12px rgba(0,0,0,0.05); }
+.el-table { flex: 1; }
+.el-table table { width: 100%; }
+.el-table__header th { height: 45px; font-size: 14px; font-weight: bold; color: var(--el-text-color-primary); background: var(--el-fill-color-light); }
+.el-table__row { height: 45px; font-size: 14px; }
+.el-pagination { display: flex; justify-content: flex-end; margin-top: 20px; }
+.el-dialog { padding: 0; }
+.el-dialog__header { padding: 15px 20px; margin: 0; border-bottom: 1px solid var(--el-border-color-lighter); }
+.el-dialog__body, .el-dialog__footer { padding: 15px 20px; }
+.main-maximize .el-aside, .main-maximize .el-header, .main-maximize .el-footer { display: none !important; }

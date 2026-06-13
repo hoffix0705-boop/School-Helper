@@ -1,0 +1,12 @@
+﻿:root {
+  --el-color-primary: #409eff;
+  --el-menu-bg-color: #ffffff;
+  --el-menu-text-color: #333333;
+  --el-menu-active-color: var(--el-color-primary);
+  --el-aside-logo-text-color: #409eff;
+  --el-aside-border-color: #e4e7ed;
+  --el-header-bg-color: #ffffff;
+  --el-header-text-color: #333333;
+  --el-header-border-color: #e4e7ed;
+}
+$primary-color: var(--el-color-primary);

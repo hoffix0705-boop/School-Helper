@@ -1,22 +1,3 @@
-﻿# Java
-campus-helper-server/target/
-campus-helper-server/*.jar
-campus-helper-server/logs/
-
-# Node
-campus-helper-client/node_modules/
-campus-helper-client/dist/
-
-# IDE
-.idea/
-*.iml
-.vscode/
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Env
-*.local
-.env.local
-.env.*.local
+﻿# Javacampus-helper-server/target/campus-helper-server/*.jarcampus-helper-server/logs/# Nodecampus-helper-client/node_modules/campus-helper-client/dist/# IDE.idea/*.iml.vscode/# OS.DS_StoreThumbs.db# Env*.local.env.local.env.*.local# Temp / debug files
+*.bak
+*.log*.json

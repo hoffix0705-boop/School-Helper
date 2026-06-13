@@ -39,7 +39,7 @@ mybatis-plus:
 sa-token:
   token-name: token
   timeout: 2592000
-  activity-timeout: 1800
+  active-timeout: 1800
   is-concurrent: true
   is-share: true
   token-style: uuid
