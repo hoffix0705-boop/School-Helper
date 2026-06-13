@@ -56,4 +56,14 @@
         WHERE t.id = #{id} AND t.deleted = 0
     </select>
 
+    <select id="selectRecentTasksWithPublisher" resultType="java.util.Map">
+        SELECT t.id, t.title, t.price, t.status, t.view_count, t.create_time,
+               u.nickname AS publisherName
+        FROM task t
+        LEFT JOIN `user` u ON t.user_id = u.id AND u.deleted = 0
+        WHERE t.deleted = 0
+        ORDER BY t.create_time DESC
+        LIMIT #{limit}
+    </select>
+
 </mapper>

@@ -7,15 +7,14 @@ import com.campushelper.dto.TaskVO;
 import com.campushelper.entity.Task;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+import java.util.Map;
+
 public interface TaskMapper extends BaseMapper<Task> {
 
-    /**
-     * 分页查询任务列表（联表）
-     */
     IPage<TaskVO> selectTaskVOPage(IPage<?> page, @Param("req") TaskQueryReq req);
 
-    /**
-     * 查询任务详情（联表）
-     */
     TaskVO selectTaskVOById(@Param("id") Long id);
+
+    List<Map<String, Object>> selectRecentTasksWithPublisher(@Param("limit") int limit);
 }

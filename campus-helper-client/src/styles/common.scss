@@ -1,0 +1,24 @@
+﻿.flx-center { display: flex; align-items: center; justify-content: center; }
+.flx-justify-between { display: flex; align-items: center; justify-content: space-between; }
+.flx-align-center { display: flex; align-items: center; }
+.sle { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fade-transform-leave-active, .fade-transform-enter-active { transition: all 0.25s ease; }
+.fade-transform-enter-from { opacity: 0; transform: translateX(-20px); }
+.fade-transform-leave-to { opacity: 0; transform: translateX(20px); }
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-thumb { background: var(--el-border-color-darker); border-radius: 20px; }
+.card {
+  box-sizing: border-box;
+  padding: 20px;
+  overflow-x: hidden;
+  background-color: var(--el-bg-color);
+  border: 1px solid var(--el-border-color-light);
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.05);
+}
+@for $i from 0 through 50 {
+  .mt#{$i} { margin-top: #{$i}px !important; }
+  .mr#{$i} { margin-right: #{$i}px !important; }
+  .mb#{$i} { margin-bottom: #{$i}px !important; }
+  .ml#{$i} { margin-left: #{$i}px !important; }
+}
